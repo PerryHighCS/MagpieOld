@@ -45,7 +45,7 @@ public class Main
             
             //
             if (echo) {
-                System.out.println(statement);
+                System.out.println("< " + statement);
             }
         }
     }
