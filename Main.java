@@ -36,18 +36,18 @@ public class Main
         
         // Loop getting statements and responding to them until done
         while (!statement.equals("Bye"))
-        {
+        {            
+            // Show the statement if reading from a file
+            if (echo) {
+                System.out.println("< " + statement);
+            }
+            
             // Respond to the statement
             System.out.println (maggie.getResponse(statement));
             
             // Get the next statement from the user, quit if there are no more
             if (in.hasNextLine()) {
-                statement = in.nextLine();
-                
-                // Show the statement if reading from a file
-                if (echo) {
-                    System.out.println("< " + statement);
-                }
+                statement = in.nextLine();                
             }
             else {
                 statement = "Bye";
