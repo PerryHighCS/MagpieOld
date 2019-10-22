@@ -4,4 +4,5 @@ jdk: openjdk8
 script:
   - javac *.java -Xlint
   - ls -l *.class
-  - java Main < conv.txt
+after_script:
+  - timeout 15s java Main conv.txt

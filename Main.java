@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * A simple class to run the Magpie class.
@@ -11,18 +13,40 @@ public class Main
     /**
      * Create a Magpie, give it user input, and print its replies.
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException 
     {
+        boolean echo = false;
+
+        // Read from either a specified file or the Standard input
+        Scanner in;
+        if (args.length == 1) {
+            in = new Scanner(new File(args[0]));
+            echo = true;
+        }        
+        else {
+            in = new Scanner (System.in);
+        }
+        
         Magpie maggie = new Magpie();
-
         System.out.println (maggie.getGreeting());
-        Scanner in = new Scanner (System.in);
-        String statement = in.nextLine();
 
+        String statement = in.nextLine();
         while (!statement.equals("Bye"))
         {
             System.out.println (maggie.getResponse(statement));
-            statement = in.nextLine();
+            
+            // Get the next statement from the user, quit if there are no more
+            if (in.hasNextLine()) {
+                statement = in.nextLine();
+            }
+            else {
+                statement = "Bye";
+            }
+            
+            //
+            if (echo) {
+                System.out.println(statement);
+            }
         }
     }
 
