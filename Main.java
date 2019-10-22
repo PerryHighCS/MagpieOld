@@ -19,35 +19,39 @@ public class Main
 
         // Read from either a specified file or the Standard input
         Scanner in;
-        if (args.length == 1) {
-            in = new Scanner(new File(args[0]));
+        if (args.length == 1) { // If there is a file specified on the command line
+            in = new Scanner(new File(args[0])); // Use it
             echo = true;
         }        
-        else {
+        else { // No file - use System.in
             in = new Scanner (System.in);
         }
         
+        // Create the Magpie chatbot
         Magpie maggie = new Magpie();
         System.out.println (maggie.getGreeting());
 
+        // Get the first statement from the input
         String statement = in.nextLine();
+        
+        // Loop getting statements and responding to them until done
         while (!statement.equals("Bye"))
         {
+            // Respond to the statement
             System.out.println (maggie.getResponse(statement));
             
             // Get the next statement from the user, quit if there are no more
             if (in.hasNextLine()) {
                 statement = in.nextLine();
+                
+                // Show the statement if reading from a file
+                if (echo) {
+                    System.out.println("< " + statement);
+                }
             }
             else {
                 statement = "Bye";
             }
-            
-            // Show the statement if reading from a file
-            if (echo) {
-                System.out.println("< " + statement);
-            }
         }
     }
-
 }
