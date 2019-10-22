@@ -43,7 +43,7 @@ public class Main
                 statement = "Bye";
             }
             
-            //
+            // Show the statement if reading from a file
             if (echo) {
                 System.out.println("< " + statement);
             }
